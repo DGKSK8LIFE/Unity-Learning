@@ -11,8 +11,8 @@ public class Mesh_Generator : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
 
-    public int xSize = 20;
-    public int zSize = 20;
+    public int xSize = 0;
+    public int zSize = 0;
     // Start is called before the first frame update
     void Start()
     {
