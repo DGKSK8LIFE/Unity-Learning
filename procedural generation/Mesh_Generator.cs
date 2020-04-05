@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 public class Mesh_Generator : MonoBehaviour
 {
-
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
@@ -18,20 +17,20 @@ public class Mesh_Generator : MonoBehaviour
     {
        mesh = new Mesh(); 
        GetComponent<MeshFilter>().mesh = mesh;
-       StartCoroutine(CreateShape());
+       CreateShape();
     }
 
     private void Update(){
        UpdateMesh();
     }
 
-    IEnumerator CreateShape()
+    public void CreateShape()
     {
         vertices = new Vector3[(xSize+1) * (zSize + 1)];
 
         for (int i = 0, z = 0; z <= zSize; z++){
             for (int x = 0; x <= xSize; x++) {
-                float y = Mathf.PerlinNoise(x * 0.3f, z * 0.3f) * 2f;
+                float y = Mathf.PerlinNoise(x * 0.2f, z * 0.2f) * 3f;
                 vertices[i] = new Vector3(x, y, z);
                 i++;
             }
@@ -52,9 +51,6 @@ public class Mesh_Generator : MonoBehaviour
 
                 vert++;
                 tris += 6;
-
-                yield return new WaitForSeconds(.01f);
-
             }
             vert++;
         }
