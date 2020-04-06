@@ -18,13 +18,10 @@ public class Mesh_Generator : MonoBehaviour
        mesh = new Mesh(); 
        GetComponent<MeshFilter>().mesh = mesh;
        CreateShape();
-    }
-
-    private void Update(){
        UpdateMesh();
     }
 
-    public void CreateShape()
+    void CreateShape()
     {
         vertices = new Vector3[(xSize+1) * (zSize + 1)];
 
@@ -52,24 +49,13 @@ public class Mesh_Generator : MonoBehaviour
                 vert++;
                 tris += 6;
             }
-            vert++;
         }
+        vert++;
     }
 
     void UpdateMesh(){
         mesh.Clear();
-
         mesh.vertices = vertices;
         mesh.triangles = triangles;
-    }
-
-    private void OnDrawGizmos() {
-        if (vertices == null) {
-            return;
-        }
-
-        for (int i = 0; i < vertices.Length; i++) {
-            Gizmos.DrawSphere(vertices[i], .1f);
-        }
     }
 }
