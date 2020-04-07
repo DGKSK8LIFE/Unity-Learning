@@ -27,7 +27,7 @@ public class Mesh_Generator : MonoBehaviour
 
         for (int i = 0, z = 0; z <= zSize; z++){
             for (int x = 0; x <= xSize; x++) {
-                float y = Mathf.PerlinNoise(x * 0.2f, z * 0.2f) * 3f;
+                float y = Mathf.PerlinNoise(x * (float)GetRandomNumber(0.2, 1), z * (float)GetRandomNumber(0.2, 1)) * 3f;
                 vertices[i] = new Vector3(x, y, z);
                 i++;
             }
@@ -55,7 +55,15 @@ public class Mesh_Generator : MonoBehaviour
 
     void UpdateMesh(){
         mesh.Clear();
+
         mesh.vertices = vertices;
         mesh.triangles = triangles;
     }
+
+    public double GetRandomNumber(double minimum, double maximum){ 
+        System.Random random = new System.Random();
+        return random.NextDouble() * (maximum - minimum) + minimum;
+    }
+
 }
+
